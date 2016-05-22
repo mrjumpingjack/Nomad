@@ -120,6 +120,7 @@ namespace GUI_controll
                 rb_idle.Enabled = false;
                 rb_lokalcontrol.Enabled = false;
 
+
                 einstellungen.load_settings();
 
                 cbl = einstellungen.cbl;

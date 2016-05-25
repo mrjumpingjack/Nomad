@@ -52,6 +52,8 @@ namespace surveillance
 
         static private string host;
 
+
+
         //public static PC_Auto pc_auto = new PC_Auto();
 
         static void Main(string[] args)
@@ -60,104 +62,105 @@ namespace surveillance
 
             //try
             //{
-                #region start
+            #region start
 
-                if (args.Length > 0)
-                    host = args[0];
+            if (args.Length > 0)
+                host = args[0];
 
-                datamng.setup();
-                Thread.Sleep(500);
+            datamng.setup();
+            Thread.Sleep(500);
 
 
-                Console.WriteLine("1: SETTING UP ARDUINO <-> RASPBERRY");
-                Auto_Arduino auto_arduino = new Auto_Arduino();
+            Console.WriteLine("1: SETTING UP ARDUINO <-> RASPBERRY");
+            Auto_Arduino auto_arduino = new Auto_Arduino();
+            auto_arduino.setup();
+
+            while (!auto_arduino.is_activ)
+            {
+                Console.WriteLine("try to start arduino...");
                 auto_arduino.setup();
-
-                while (!auto_arduino.is_activ)
-                {
-                    Console.WriteLine("try to start arduino...");
-                    auto_arduino.setup();
-                    Thread.Sleep(500);
-                }
-
-                Console.WriteLine("DONE");
-                Console.WriteLine();
-
-                Console.WriteLine("2: IP CONFIG");
-                if (String.IsNullOrEmpty(host))
-                {
-                    host = "192.168.0.11";
-                }
-
-                Console.WriteLine("IP: " + host);
-
-                Console.WriteLine("DONE");
-                Console.WriteLine();
-
-                Console.WriteLine("3: WIRINGPI");
-
-                Program.datamng.wp.setup();
-
-                Console.WriteLine("DONE");
-                Console.WriteLine();
-
-                Console.WriteLine("4: SPECOMMS");
-                egpiofunc.setup();
-                Console.WriteLine("DONE");
-                Console.WriteLine();
-
-
-                Console.WriteLine("5: THREAD STARTS");
-                artificial_intelligence artiintell = new artificial_intelligence();
-                directcontrol_panzer drctrl = new directcontrol_panzer();
-                localcontroll localcontroll = new localcontroll();
-
-                drive_with_AI = new Thread(artiintell.drive);
-                drive_with_DIRECT = new Thread(drctrl.drive);
-                drive_with_LOCAL = new Thread(localcontroll.local_con);
-
-                Console.WriteLine("DONE");
-                Console.WriteLine();
-                Console.WriteLine("6: CONNECT TO HOST PC");
-
-
-                pc_auto.connect_to_PC(host);
-
                 Thread.Sleep(500);
+            }
+
+            Console.WriteLine("DONE");
+            Console.WriteLine();
+
+            Console.WriteLine("2: IP CONFIG");
+            if (String.IsNullOrEmpty(host))
+            {
+                host = "192.168.0.11";
+            }
+
+            Console.WriteLine("IP: " + host);
+
+            Console.WriteLine("DONE");
+            Console.WriteLine();
+
+            Console.WriteLine("3: WIRINGPI");
+
+            Program.datamng.wp.setup();
+
+            Console.WriteLine("DONE");
+            Console.WriteLine();
+
+            Console.WriteLine("4: SPECOMMS");
+            egpiofunc.setup();
+            Console.WriteLine("DONE");
+            Console.WriteLine();
 
 
-                Console.WriteLine("DONE");
-                Console.WriteLine();
+            Console.WriteLine("5: THREAD STARTS");
+            artificial_intelligence artiintell = new artificial_intelligence();
+            directcontrol_panzer drctrl = new directcontrol_panzer();
+            localcontroll localcontroll = new localcontroll();
 
-                Console.WriteLine("7: SENDING DATA TO PC STARTED");
-                send_data_to_pc.Start();
+            drive_with_AI = new Thread(artiintell.drive);
+            drive_with_DIRECT = new Thread(drctrl.drive);
+            drive_with_LOCAL = new Thread(localcontroll.local_con);
 
-                Console.WriteLine("DONE");
-                Console.WriteLine();
-
-
-
-
-
-                Console.WriteLine("8: ACTIVATING THRAEDS");
-
-                //drive_with_AI.Start();
-                drive_with_DIRECT.Start();
-                //drive_with_LOCAL.Start();
-
-                Thread.Sleep(1000);
-
-                Console.WriteLine("AI STATUS: " + Program.drive_with_AI.ThreadState);
-                Console.WriteLine("LOCAL STATUS: " + Program.drive_with_LOCAL.ThreadState);
-                Console.WriteLine("DIRECT STATUS: " + Program.drive_with_DIRECT.ThreadState);
-
-                Console.WriteLine("DONE");
-                Console.WriteLine();
+            Console.WriteLine("DONE");
+            Console.WriteLine();
+            Console.WriteLine("6: CONNECT TO HOST PC");
 
 
+            pc_auto.connect_to_PC(host);
+
+            Thread.Sleep(500);
 
 
-                #endregion start
+            Console.WriteLine("DONE");
+            Console.WriteLine();
+
+            Console.WriteLine("7: SENDING DATA TO PC STARTED");
+            send_data_to_pc.Start();
+
+            Console.WriteLine("DONE");
+            Console.WriteLine();
+
+
+
+
+
+            Console.WriteLine("8: ACTIVATING THRAEDS");
+
+            //drive_with_AI.Start();
+            drive_with_DIRECT.Start();
+            //drive_with_LOCAL.Start();
+
+            Thread.Sleep(1000);
+
+            Console.WriteLine("AI STATUS: " + Program.drive_with_AI.ThreadState);
+            Console.WriteLine("LOCAL STATUS: " + Program.drive_with_LOCAL.ThreadState);
+            Console.WriteLine("DIRECT STATUS: " + Program.drive_with_DIRECT.ThreadState);
+
+            Console.WriteLine("DONE");
+            Console.WriteLine();
+
+
+            Console.WriteLine("Threadcount: " + Process.GetCurrentProcess().Threads);
+
+
+            #endregion start
 
 
 

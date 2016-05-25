@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, -1.5D);
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, -1.5D);
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btn_manuel = new System.Windows.Forms.Button();
             this.btn_disconnect = new System.Windows.Forms.Button();
@@ -62,29 +62,20 @@
             this.btn_connect = new System.Windows.Forms.Button();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.l_status = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.rb_lokalcontrol = new System.Windows.Forms.RadioButton();
             this.rb_autopilot = new System.Windows.Forms.RadioButton();
             this.rb_idle = new System.Windows.Forms.RadioButton();
-            this.rb_directcontrol = new System.Windows.Forms.RadioButton();
-            this.l_status = new System.Windows.Forms.Label();
-            this.l_GamePadStatus = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.menuStrip3 = new System.Windows.Forms.MenuStrip();
-            this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.einstellungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.einstellungenToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
-            this.extrasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.akustischeWarnungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aktuelleStellungAlsStandartSetzenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.l_temp = new System.Windows.Forms.Label();
-            this.l_temperatur = new System.Windows.Forms.Label();
+            this.rb_directcontrol = new System.Windows.Forms.RadioButton();
+            this.l_GamePadStatus = new System.Windows.Forms.Label();
+            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.l_hum = new System.Windows.Forms.Label();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.hsb_cam = new System.Windows.Forms.HScrollBar();
             this.vScrollBar2 = new System.Windows.Forms.VScrollBar();
@@ -102,7 +93,17 @@
             this.tb_back = new System.Windows.Forms.TrackBar();
             this.tb_front = new System.Windows.Forms.TrackBar();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.l_temperatur = new System.Windows.Forms.Label();
+            this.l_temp = new System.Windows.Forms.Label();
+            this.menuStrip3 = new System.Windows.Forms.MenuStrip();
+            this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.einstellungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.einstellungenToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.extrasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.akustischeWarnungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aktuelleStellungAlsStandartSetzenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -115,12 +116,14 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            this.menuStrip3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
+            this.splitContainer4.Panel1.SuspendLayout();
+            this.splitContainer4.Panel2.SuspendLayout();
+            this.splitContainer4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tb_left_hinten)).BeginInit();
@@ -129,10 +132,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tb_right_vorn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tb_back)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tb_front)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
-            this.splitContainer4.Panel1.SuspendLayout();
-            this.splitContainer4.Panel2.SuspendLayout();
-            this.splitContainer4.SuspendLayout();
+            this.menuStrip3.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -177,7 +177,7 @@
             this.mapexplr.GrayScaleMode = false;
             this.mapexplr.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.mapexplr.LevelsKeepInMemmory = 5;
-            this.mapexplr.Location = new System.Drawing.Point(0, 32);
+            this.mapexplr.Location = new System.Drawing.Point(-2, 32);
             this.mapexplr.MarkersEnabled = true;
             this.mapexplr.MaxZoom = 2;
             this.mapexplr.MinZoom = 2;
@@ -190,7 +190,7 @@
             this.mapexplr.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.mapexplr.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.mapexplr.ShowTileGridLines = false;
-            this.mapexplr.Size = new System.Drawing.Size(637, 350);
+            this.mapexplr.Size = new System.Drawing.Size(512, 350);
             this.mapexplr.TabIndex = 40;
             this.mapexplr.Zoom = 0D;
             this.mapexplr.Load += new System.EventHandler(this.mapexplr_Load_1);
@@ -213,7 +213,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.webKitBrowser1);
-            this.splitContainer1.Size = new System.Drawing.Size(641, 784);
+            this.splitContainer1.Size = new System.Drawing.Size(514, 784);
             this.splitContainer1.SplitterDistance = 388;
             this.splitContainer1.TabIndex = 42;
             // 
@@ -229,14 +229,14 @@
             this.panel3.Controls.Add(this.menuStrip1);
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(634, 382);
+            this.panel3.Size = new System.Drawing.Size(507, 382);
             this.panel3.TabIndex = 48;
             // 
             // pictureBox12
             // 
             this.pictureBox12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox12.BackColor = System.Drawing.Color.Black;
-            this.pictureBox12.Location = new System.Drawing.Point(489, 28);
+            this.pictureBox12.Location = new System.Drawing.Point(362, 28);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(148, 108);
             this.pictureBox12.TabIndex = 50;
@@ -295,7 +295,7 @@
             this.goHomeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(634, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(507, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -392,7 +392,7 @@
             this.webKitBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.webKitBrowser1.Location = new System.Drawing.Point(0, 0);
             this.webKitBrowser1.Name = "webKitBrowser1";
-            this.webKitBrowser1.Size = new System.Drawing.Size(637, 388);
+            this.webKitBrowser1.Size = new System.Drawing.Size(510, 388);
             this.webKitBrowser1.TabIndex = 1;
             this.webKitBrowser1.Url = null;
             // 
@@ -414,7 +414,7 @@
             this.listBox2.FormattingEnabled = true;
             this.listBox2.Location = new System.Drawing.Point(0, 245);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(580, 537);
+            this.listBox2.Size = new System.Drawing.Size(555, 537);
             this.listBox2.TabIndex = 47;
             this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             // 
@@ -434,176 +434,8 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer1);
             this.splitContainer2.Size = new System.Drawing.Size(1617, 784);
-            this.splitContainer2.SplitterDistance = 972;
+            this.splitContainer2.SplitterDistance = 1099;
             this.splitContainer2.TabIndex = 49;
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(265, 209);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(311, 23);
-            this.progressBar1.TabIndex = 55;
-            // 
-            // rb_lokalcontrol
-            // 
-            this.rb_lokalcontrol.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rb_lokalcontrol.AutoSize = true;
-            this.rb_lokalcontrol.Location = new System.Drawing.Point(491, 95);
-            this.rb_lokalcontrol.Name = "rb_lokalcontrol";
-            this.rb_lokalcontrol.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.rb_lokalcontrol.Size = new System.Drawing.Size(83, 17);
-            this.rb_lokalcontrol.TabIndex = 54;
-            this.rb_lokalcontrol.Text = "Localcontrol";
-            this.rb_lokalcontrol.UseVisualStyleBackColor = true;
-            this.rb_lokalcontrol.CheckedChanged += new System.EventHandler(this.rb_lokalcontrol_CheckedChanged);
-            // 
-            // rb_autopilot
-            // 
-            this.rb_autopilot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rb_autopilot.AutoSize = true;
-            this.rb_autopilot.Location = new System.Drawing.Point(508, 118);
-            this.rb_autopilot.Name = "rb_autopilot";
-            this.rb_autopilot.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.rb_autopilot.Size = new System.Drawing.Size(66, 17);
-            this.rb_autopilot.TabIndex = 53;
-            this.rb_autopilot.Text = "Autopilot";
-            this.rb_autopilot.UseVisualStyleBackColor = true;
-            this.rb_autopilot.CheckedChanged += new System.EventHandler(this.rb_autopilot_CheckedChanged);
-            // 
-            // rb_idle
-            // 
-            this.rb_idle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rb_idle.AutoSize = true;
-            this.rb_idle.Checked = true;
-            this.rb_idle.Location = new System.Drawing.Point(532, 49);
-            this.rb_idle.Name = "rb_idle";
-            this.rb_idle.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.rb_idle.Size = new System.Drawing.Size(42, 17);
-            this.rb_idle.TabIndex = 52;
-            this.rb_idle.TabStop = true;
-            this.rb_idle.Text = "Idle";
-            this.rb_idle.UseVisualStyleBackColor = true;
-            this.rb_idle.CheckedChanged += new System.EventHandler(this.rb_idle_CheckedChanged);
-            // 
-            // rb_directcontrol
-            // 
-            this.rb_directcontrol.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rb_directcontrol.AutoSize = true;
-            this.rb_directcontrol.Location = new System.Drawing.Point(489, 72);
-            this.rb_directcontrol.Name = "rb_directcontrol";
-            this.rb_directcontrol.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.rb_directcontrol.Size = new System.Drawing.Size(85, 17);
-            this.rb_directcontrol.TabIndex = 51;
-            this.rb_directcontrol.Text = "Directcontrol";
-            this.rb_directcontrol.UseVisualStyleBackColor = true;
-            this.rb_directcontrol.CheckedChanged += new System.EventHandler(this.rb_directcontrol_CheckedChanged);
-            // 
-            // l_status
-            // 
-            this.l_status.AutoSize = true;
-            this.l_status.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.l_status.Location = new System.Drawing.Point(10, 7);
-            this.l_status.Name = "l_status";
-            this.l_status.Size = new System.Drawing.Size(110, 39);
-            this.l_status.TabIndex = 49;
-            this.l_status.Text = "offline";
-            // 
-            // l_GamePadStatus
-            // 
-            this.l_GamePadStatus.AutoSize = true;
-            this.l_GamePadStatus.Location = new System.Drawing.Point(10, 102);
-            this.l_GamePadStatus.Name = "l_GamePadStatus";
-            this.l_GamePadStatus.Size = new System.Drawing.Size(141, 13);
-            this.l_GamePadStatus.TabIndex = 27;
-            this.l_GamePadStatus.Text = "GamePad Status unbekannt";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(187, 216);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(72, 17);
-            this.checkBox1.TabIndex = 49;
-            this.checkBox1.Text = "Autoscroll";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // menuStrip3
-            // 
-            this.menuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dateiToolStripMenuItem,
-            this.einstellungenToolStripMenuItem,
-            this.extrasToolStripMenuItem});
-            this.menuStrip3.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip3.Name = "menuStrip3";
-            this.menuStrip3.Size = new System.Drawing.Size(1617, 24);
-            this.menuStrip3.TabIndex = 50;
-            this.menuStrip3.Text = "menuStrip3";
-            // 
-            // dateiToolStripMenuItem
-            // 
-            this.dateiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exitToolStripMenuItem});
-            this.dateiToolStripMenuItem.Name = "dateiToolStripMenuItem";
-            this.dateiToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
-            this.dateiToolStripMenuItem.Text = "Datei";
-            // 
-            // einstellungenToolStripMenuItem
-            // 
-            this.einstellungenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.einstellungenToolStripMenuItem1,
-            this.toolStripTextBox1});
-            this.einstellungenToolStripMenuItem.Name = "einstellungenToolStripMenuItem";
-            this.einstellungenToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
-            this.einstellungenToolStripMenuItem.Text = "Einstellungen";
-            // 
-            // einstellungenToolStripMenuItem1
-            // 
-            this.einstellungenToolStripMenuItem1.Name = "einstellungenToolStripMenuItem1";
-            this.einstellungenToolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
-            this.einstellungenToolStripMenuItem1.Text = "Einstellungen";
-            this.einstellungenToolStripMenuItem1.Click += new System.EventHandler(this.einstellungenToolStripMenuItem1_Click);
-            // 
-            // toolStripTextBox1
-            // 
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 23);
-            this.toolStripTextBox1.Text = "http://192.168.0.10/html/";
-            this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
-            this.toolStripTextBox1.TextChanged += new System.EventHandler(this.toolStripTextBox1_TextChanged);
-            // 
-            // extrasToolStripMenuItem
-            // 
-            this.extrasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.akustischeWarnungenToolStripMenuItem,
-            this.aktuelleStellungAlsStandartSetzenToolStripMenuItem});
-            this.extrasToolStripMenuItem.Name = "extrasToolStripMenuItem";
-            this.extrasToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
-            this.extrasToolStripMenuItem.Text = "Extras";
-            // 
-            // akustischeWarnungenToolStripMenuItem
-            // 
-            this.akustischeWarnungenToolStripMenuItem.CheckOnClick = true;
-            this.akustischeWarnungenToolStripMenuItem.Name = "akustischeWarnungenToolStripMenuItem";
-            this.akustischeWarnungenToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
-            this.akustischeWarnungenToolStripMenuItem.Text = "Akustische Warnungen";
-            // 
-            // aktuelleStellungAlsStandartSetzenToolStripMenuItem
-            // 
-            this.aktuelleStellungAlsStandartSetzenToolStripMenuItem.Name = "aktuelleStellungAlsStandartSetzenToolStripMenuItem";
-            this.aktuelleStellungAlsStandartSetzenToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
-            this.aktuelleStellungAlsStandartSetzenToolStripMenuItem.Text = "Aktuelle Stellung als Standart setzen";
-            this.aktuelleStellungAlsStandartSetzenToolStripMenuItem.Click += new System.EventHandler(this.aktuelleStellungAlsStandartSetzenToolStripMenuItem_Click);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // splitContainer3
             // 
@@ -631,57 +463,129 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer3.Size = new System.Drawing.Size(972, 784);
-            this.splitContainer3.SplitterDistance = 581;
+            this.splitContainer3.Size = new System.Drawing.Size(1099, 784);
+            this.splitContainer3.SplitterDistance = 556;
             this.splitContainer3.SplitterWidth = 10;
             this.splitContainer3.TabIndex = 60;
             // 
-            // groupBox1
+            // l_status
             // 
-            this.groupBox1.Controls.Add(this.chart1);
-            this.groupBox1.Controls.Add(this.l_temp);
-            this.groupBox1.Controls.Add(this.l_temperatur);
-            this.groupBox1.Location = new System.Drawing.Point(3, 5);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(371, 157);
-            this.groupBox1.TabIndex = 62;
-            this.groupBox1.TabStop = false;
+            this.l_status.AutoSize = true;
+            this.l_status.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.l_status.Location = new System.Drawing.Point(10, 7);
+            this.l_status.Name = "l_status";
+            this.l_status.Size = new System.Drawing.Size(110, 39);
+            this.l_status.TabIndex = 49;
+            this.l_status.Text = "offline";
             // 
-            // chart1
+            // progressBar1
             // 
-            this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.chart1.BackColor = System.Drawing.SystemColors.Control;
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            this.chart1.Location = new System.Drawing.Point(6, 0);
-            this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Name = "Series1";
-            series2.Points.Add(dataPoint2);
-            this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(218, 157);
-            this.chart1.TabIndex = 51;
-            this.chart1.Text = "chart1";
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar1.Location = new System.Drawing.Point(265, 209);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(286, 23);
+            this.progressBar1.TabIndex = 55;
             // 
-            // l_temp
+            // rb_lokalcontrol
             // 
-            this.l_temp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.l_temp.AutoSize = true;
-            this.l_temp.Location = new System.Drawing.Point(295, 16);
-            this.l_temp.Name = "l_temp";
-            this.l_temp.Size = new System.Drawing.Size(25, 13);
-            this.l_temp.TabIndex = 58;
-            this.l_temp.Text = "n.a.";
+            this.rb_lokalcontrol.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rb_lokalcontrol.AutoSize = true;
+            this.rb_lokalcontrol.Location = new System.Drawing.Point(466, 95);
+            this.rb_lokalcontrol.Name = "rb_lokalcontrol";
+            this.rb_lokalcontrol.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.rb_lokalcontrol.Size = new System.Drawing.Size(83, 17);
+            this.rb_lokalcontrol.TabIndex = 54;
+            this.rb_lokalcontrol.Text = "Localcontrol";
+            this.rb_lokalcontrol.UseVisualStyleBackColor = true;
+            this.rb_lokalcontrol.CheckedChanged += new System.EventHandler(this.rb_lokalcontrol_CheckedChanged);
             // 
-            // l_temperatur
+            // rb_autopilot
             // 
-            this.l_temperatur.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.l_temperatur.AutoSize = true;
-            this.l_temperatur.Location = new System.Drawing.Point(230, 16);
-            this.l_temperatur.Name = "l_temperatur";
-            this.l_temperatur.Size = new System.Drawing.Size(64, 13);
-            this.l_temperatur.TabIndex = 57;
-            this.l_temperatur.Text = "Temperatur:";
+            this.rb_autopilot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rb_autopilot.AutoSize = true;
+            this.rb_autopilot.Location = new System.Drawing.Point(483, 118);
+            this.rb_autopilot.Name = "rb_autopilot";
+            this.rb_autopilot.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.rb_autopilot.Size = new System.Drawing.Size(66, 17);
+            this.rb_autopilot.TabIndex = 53;
+            this.rb_autopilot.Text = "Autopilot";
+            this.rb_autopilot.UseVisualStyleBackColor = true;
+            this.rb_autopilot.CheckedChanged += new System.EventHandler(this.rb_autopilot_CheckedChanged);
+            // 
+            // rb_idle
+            // 
+            this.rb_idle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rb_idle.AutoSize = true;
+            this.rb_idle.Checked = true;
+            this.rb_idle.Location = new System.Drawing.Point(507, 49);
+            this.rb_idle.Name = "rb_idle";
+            this.rb_idle.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.rb_idle.Size = new System.Drawing.Size(42, 17);
+            this.rb_idle.TabIndex = 52;
+            this.rb_idle.TabStop = true;
+            this.rb_idle.Text = "Idle";
+            this.rb_idle.UseVisualStyleBackColor = true;
+            this.rb_idle.CheckedChanged += new System.EventHandler(this.rb_idle_CheckedChanged);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(187, 216);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(72, 17);
+            this.checkBox1.TabIndex = 49;
+            this.checkBox1.Text = "Autoscroll";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // rb_directcontrol
+            // 
+            this.rb_directcontrol.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rb_directcontrol.AutoSize = true;
+            this.rb_directcontrol.Location = new System.Drawing.Point(464, 72);
+            this.rb_directcontrol.Name = "rb_directcontrol";
+            this.rb_directcontrol.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.rb_directcontrol.Size = new System.Drawing.Size(85, 17);
+            this.rb_directcontrol.TabIndex = 51;
+            this.rb_directcontrol.Text = "Directcontrol";
+            this.rb_directcontrol.UseVisualStyleBackColor = true;
+            this.rb_directcontrol.CheckedChanged += new System.EventHandler(this.rb_directcontrol_CheckedChanged);
+            // 
+            // l_GamePadStatus
+            // 
+            this.l_GamePadStatus.AutoSize = true;
+            this.l_GamePadStatus.Location = new System.Drawing.Point(10, 102);
+            this.l_GamePadStatus.Name = "l_GamePadStatus";
+            this.l_GamePadStatus.Size = new System.Drawing.Size(141, 13);
+            this.l_GamePadStatus.TabIndex = 27;
+            this.l_GamePadStatus.Text = "GamePad Status unbekannt";
+            // 
+            // splitContainer4
+            // 
+            this.splitContainer4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer4.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer4.Name = "splitContainer4";
+            this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer4.Panel1
+            // 
+            this.splitContainer4.Panel1.Controls.Add(this.listBox1);
+            // 
+            // splitContainer4.Panel2
+            // 
+            this.splitContainer4.Panel2.Controls.Add(this.l_hum);
+            this.splitContainer4.Panel2.Controls.Add(this.chart1);
+            this.splitContainer4.Panel2.Controls.Add(this.label2);
+            this.splitContainer4.Panel2.Controls.Add(this.panel2);
+            this.splitContainer4.Panel2.Controls.Add(this.l_temperatur);
+            this.splitContainer4.Panel2.Controls.Add(this.l_temp);
+            this.splitContainer4.Size = new System.Drawing.Size(533, 784);
+            this.splitContainer4.SplitterDistance = 182;
+            this.splitContainer4.SplitterIncrement = 3;
+            this.splitContainer4.TabIndex = 0;
             // 
             // listBox1
             // 
@@ -689,8 +593,44 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(0, 0);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(377, 178);
+            this.listBox1.Size = new System.Drawing.Size(529, 178);
             this.listBox1.TabIndex = 61;
+            // 
+            // l_hum
+            // 
+            this.l_hum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.l_hum.AutoSize = true;
+            this.l_hum.Location = new System.Drawing.Point(314, 29);
+            this.l_hum.Name = "l_hum";
+            this.l_hum.Size = new System.Drawing.Size(25, 13);
+            this.l_hum.TabIndex = 60;
+            this.l_hum.Text = "n.a.";
+            // 
+            // chart1
+            // 
+            this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.chart1.BackColor = System.Drawing.SystemColors.Control;
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            this.chart1.Location = new System.Drawing.Point(3, 3);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Name = "Series1";
+            series1.Points.Add(dataPoint1);
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(218, 157);
+            this.chart1.TabIndex = 51;
+            this.chart1.Text = "chart1";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(227, 29);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 13);
+            this.label2.TabIndex = 59;
+            this.label2.Text = "Luftfeuchtigkeit:";
             // 
             // panel2
             // 
@@ -715,7 +655,7 @@
             this.panel2.Controls.Add(this.panel1);
             this.panel2.Location = new System.Drawing.Point(-5, 164);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(381, 429);
+            this.panel2.Size = new System.Drawing.Size(533, 429);
             this.panel2.TabIndex = 60;
             // 
             // hsb_cam
@@ -867,26 +807,99 @@
             this.panel1.Size = new System.Drawing.Size(105, 181);
             this.panel1.TabIndex = 2;
             // 
-            // splitContainer4
+            // l_temperatur
             // 
-            this.splitContainer4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer4.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer4.Name = "splitContainer4";
-            this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.l_temperatur.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.l_temperatur.AutoSize = true;
+            this.l_temperatur.Location = new System.Drawing.Point(227, 14);
+            this.l_temperatur.Name = "l_temperatur";
+            this.l_temperatur.Size = new System.Drawing.Size(64, 13);
+            this.l_temperatur.TabIndex = 57;
+            this.l_temperatur.Text = "Temperatur:";
             // 
-            // splitContainer4.Panel1
+            // l_temp
             // 
-            this.splitContainer4.Panel1.Controls.Add(this.listBox1);
+            this.l_temp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.l_temp.AutoSize = true;
+            this.l_temp.Location = new System.Drawing.Point(314, 14);
+            this.l_temp.Name = "l_temp";
+            this.l_temp.Size = new System.Drawing.Size(25, 13);
+            this.l_temp.TabIndex = 58;
+            this.l_temp.Text = "n.a.";
             // 
-            // splitContainer4.Panel2
+            // menuStrip3
             // 
-            this.splitContainer4.Panel2.Controls.Add(this.groupBox1);
-            this.splitContainer4.Panel2.Controls.Add(this.panel2);
-            this.splitContainer4.Size = new System.Drawing.Size(381, 784);
-            this.splitContainer4.SplitterDistance = 182;
-            this.splitContainer4.SplitterIncrement = 3;
-            this.splitContainer4.TabIndex = 0;
+            this.menuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dateiToolStripMenuItem,
+            this.einstellungenToolStripMenuItem,
+            this.extrasToolStripMenuItem});
+            this.menuStrip3.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip3.Name = "menuStrip3";
+            this.menuStrip3.Size = new System.Drawing.Size(1617, 24);
+            this.menuStrip3.TabIndex = 50;
+            this.menuStrip3.Text = "menuStrip3";
+            // 
+            // dateiToolStripMenuItem
+            // 
+            this.dateiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exitToolStripMenuItem});
+            this.dateiToolStripMenuItem.Name = "dateiToolStripMenuItem";
+            this.dateiToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.dateiToolStripMenuItem.Text = "Datei";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // einstellungenToolStripMenuItem
+            // 
+            this.einstellungenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.einstellungenToolStripMenuItem1,
+            this.toolStripTextBox1});
+            this.einstellungenToolStripMenuItem.Name = "einstellungenToolStripMenuItem";
+            this.einstellungenToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
+            this.einstellungenToolStripMenuItem.Text = "Einstellungen";
+            // 
+            // einstellungenToolStripMenuItem1
+            // 
+            this.einstellungenToolStripMenuItem1.Name = "einstellungenToolStripMenuItem1";
+            this.einstellungenToolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
+            this.einstellungenToolStripMenuItem1.Text = "Einstellungen";
+            this.einstellungenToolStripMenuItem1.Click += new System.EventHandler(this.einstellungenToolStripMenuItem1_Click);
+            // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 23);
+            this.toolStripTextBox1.Text = "http://192.168.0.10/html/";
+            this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
+            this.toolStripTextBox1.TextChanged += new System.EventHandler(this.toolStripTextBox1_TextChanged);
+            // 
+            // extrasToolStripMenuItem
+            // 
+            this.extrasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.akustischeWarnungenToolStripMenuItem,
+            this.aktuelleStellungAlsStandartSetzenToolStripMenuItem});
+            this.extrasToolStripMenuItem.Name = "extrasToolStripMenuItem";
+            this.extrasToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
+            this.extrasToolStripMenuItem.Text = "Extras";
+            // 
+            // akustischeWarnungenToolStripMenuItem
+            // 
+            this.akustischeWarnungenToolStripMenuItem.CheckOnClick = true;
+            this.akustischeWarnungenToolStripMenuItem.Name = "akustischeWarnungenToolStripMenuItem";
+            this.akustischeWarnungenToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
+            this.akustischeWarnungenToolStripMenuItem.Text = "Akustische Warnungen";
+            // 
+            // aktuelleStellungAlsStandartSetzenToolStripMenuItem
+            // 
+            this.aktuelleStellungAlsStandartSetzenToolStripMenuItem.Name = "aktuelleStellungAlsStandartSetzenToolStripMenuItem";
+            this.aktuelleStellungAlsStandartSetzenToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
+            this.aktuelleStellungAlsStandartSetzenToolStripMenuItem.Text = "Aktuelle Stellung als Standart setzen";
+            this.aktuelleStellungAlsStandartSetzenToolStripMenuItem.Click += new System.EventHandler(this.aktuelleStellungAlsStandartSetzenToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -918,15 +931,16 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            this.menuStrip3.ResumeLayout(false);
-            this.menuStrip3.PerformLayout();
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel1.PerformLayout();
             this.splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.splitContainer4.Panel1.ResumeLayout(false);
+            this.splitContainer4.Panel2.ResumeLayout(false);
+            this.splitContainer4.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
+            this.splitContainer4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -936,10 +950,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.tb_right_vorn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tb_back)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tb_front)).EndInit();
-            this.splitContainer4.Panel1.ResumeLayout(false);
-            this.splitContainer4.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
-            this.splitContainer4.ResumeLayout(false);
+            this.menuStrip3.ResumeLayout(false);
+            this.menuStrip3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -995,7 +1007,6 @@
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Label l_temp;
         private System.Windows.Forms.Label l_temperatur;
@@ -1018,7 +1029,8 @@
         private System.Windows.Forms.TrackBar tb_front;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.SplitContainer splitContainer4;
-
+        private System.Windows.Forms.Label l_hum;
+        private System.Windows.Forms.Label label2;
     }
 }
 

@@ -62,17 +62,17 @@ namespace surveillance.Teile
         public int cam_status_quo = 0;
 
         public float Temperatur = 0;
+        public float Humidiation = 0;
 
         public float X = 0f;
         public float Y = 0f;
         public float Z = 0f;
 
 
-
-        public int magmet_readcount = 0;
         public int sonic_readcount = 0;
         public int heading_readcount = 0;
         public int axes_readcount = 0;
+        public int hum_readcount = 0;
         public int temp_readcount = 0;
         public int gps_readcount = 0;
 

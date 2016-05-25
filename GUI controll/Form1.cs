@@ -58,6 +58,7 @@ namespace GUI_controll
         bool route_isready = true;
         bool axes_isready = true;
         bool temp_isready = true;
+        bool hum_isready = true;
 
 
         Thread th_background;
@@ -526,7 +527,28 @@ namespace GUI_controll
                 // Es verhindert, dass der folgende Code im Worker-Thread ausgeführt wird.
             }
             // eigentliche Zugriffe; laufen jetzt auf jeden Fall im GUI-Thread
+
             l_temp.Text = text;
+
+
+            //return cancelCheckBox.Checked; // lesender Zugriff
+            return text;
+        }
+
+
+        public string setthumlabel(string text)
+        {
+            if (this.InvokeRequired)
+            { // Wenn Invoke nötig ist, ...
+                // dann rufen wir die Methode selbst per Invoke auf
+                return (string)this.Invoke((Func<string, string>)setthumlabel, text);
+                // hier ist immer ein return (oder alternativ ein else) erforderlich.
+                // Es verhindert, dass der folgende Code im Worker-Thread ausgeführt wird.
+            }
+            // eigentliche Zugriffe; laufen jetzt auf jeden Fall im GUI-Thread
+
+            l_hum.Text = text;
+
 
             //return cancelCheckBox.Checked; // lesender Zugriff
             return text;
@@ -964,6 +986,20 @@ namespace GUI_controll
 
                         }
 
+                        if (text.StartsWith("%HUM%"))
+                        {
+                            Console.WriteLine("Recieved HUM: " + text);
+                            if (hum_isready)
+                            {
+                                hum_isready = false;
+                                dealwithhumdata(text);
+                                // Thread.Sleep(100);
+                                hum_isready = true;
+                            }
+
+
+                        }
+
                     }
 
 
@@ -1002,6 +1038,35 @@ namespace GUI_controll
             verlaufGUIaccess(data);
 
             if (f_data > 50)
+            {
+
+                Console.Beep(600, 200);
+                Console.Beep(500, 200);
+                Console.Beep(400, 200);
+                Console.Beep(300, 200);
+                Console.Beep(200, 200);
+
+            }
+
+
+        }
+
+        void dealwithhumdata(string data)
+        {
+
+            NumberFormatInfo provider = new NumberFormatInfo();
+            provider.NumberDecimalSeparator = ".";
+
+            data = data.Substring(5, data.Length - 5);
+
+            float f_data = (float)Convert.ToDouble(data, provider);
+
+            f_data = f_data + temp_correction;
+            setthumlabel(Convert.ToString(f_data));
+
+            verlaufGUIaccess(data);
+
+            if (f_data > 80)
             {
 
                 Console.Beep(600, 200);

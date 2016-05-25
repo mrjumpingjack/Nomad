@@ -24,6 +24,17 @@ namespace surveillance
 
         public bool is_activ = false;
 
+        DateTime[] last_value_read = new DateTime[6];
+
+
+
+
+
+
+
+
+
+
         public void setup()
         {
             try
@@ -32,11 +43,11 @@ namespace surveillance
                 port1 = new SerialPort(portaddresse, 115200, Parity.None, 8, StopBits.One);
 
                 read_data_arduino = new Thread(read_data_from_arduino);
-                
+
                 port1.Open();
 
 
-                while(!port1.IsOpen)
+                while (!port1.IsOpen)
 
                 {
                     if (portaddresse == "/dev/ttyACM0")
@@ -67,7 +78,7 @@ namespace surveillance
         }
 
 
-        
+
 
         private void read_data_from_arduino()
         {
@@ -81,43 +92,69 @@ namespace surveillance
                 {
                     indata = port1.ReadLine();
 
-                   // Console.WriteLine("DATA FROM ARDUINO " +indata);
+                    // Console.WriteLine("DATA FROM ARDUINO " +indata);
 
                     if (indata.Length > 5)
                     {
-                        
-                       
+
+
 
                         if (indata.StartsWith("$GPGGA%"))
                         {
                             Program.datamng.gps_readcount++;
                             dealwithgeodata(indata);
+                            last_value_read[0] = DateTime.Now;
                         }
 
                         if (indata.StartsWith("%SONIC%"))
                         {
                             Program.datamng.sonic_readcount++;
                             dealwithsonicdata(indata);
+                            last_value_read[1] = DateTime.Now;
                         }
 
                         if (indata.StartsWith("%HEADING%"))
                         {
                             Program.datamng.heading_readcount++;
                             dealwithcompassdata(indata);
+                            last_value_read[2] = DateTime.Now;
                         }
 
                         if (indata.StartsWith("%AXES%"))
                         {
                             Program.datamng.axes_readcount++;
                             dealwithmagnometerdata(indata);
+                            last_value_read[3] = DateTime.Now;
                         }
 
                         if (indata.StartsWith("%TEMP%"))
                         {
                             Program.datamng.temp_readcount++;
                             dealwithtempdata(indata);
+                            last_value_read[4] = DateTime.Now;
+                        }
+
+                        if (indata.StartsWith("%HUM%"))
+                        {
+                            Program.datamng.hum_readcount++;
+                            dealwithhumdata(indata);
+                            last_value_read[5] = DateTime.Now;
                         }
                     }
+
+                   for(int dt =0; dt<last_value_read.Length; dt++)
+                    {
+                        TimeSpan ts =  DateTime.Now - last_value_read[dt];
+
+
+                        if (ts > TimeSpan.FromSeconds(30))
+                        {
+                            Console.WriteLine("Last read was 30sec ago!!! "+ dt);
+                        }
+                    }
+
+
+
                     //Thread.Sleep(200);
                 }
 
@@ -137,6 +174,18 @@ namespace surveillance
 
 
             Program.datamng.Temperatur = (float)Convert.ToDouble(data);
+
+        }
+
+
+        void dealwithhumdata(string data)
+        {
+            data = data.Substring(6, data.Length - 6);
+
+            data = RemoveWhitespace(data);
+
+
+            Program.datamng.Humidiation = (float)Convert.ToDouble(data);
 
         }
 

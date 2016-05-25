@@ -20,6 +20,29 @@ namespace surveillance
         static Stream stm;
         byte[] databyte;
 
+        DateTime last_gps;
+        DateTime last_sonic;
+        DateTime last_compass;
+        DateTime last_antrieb;
+        DateTime last_route;
+        DateTime last_magnetometer;
+        DateTime last_temperatur;
+        DateTime last_humidiation;
+
+
+
+        DateTime last_data_check_begin;
+        DateTime last_data_checked;
+        TimeSpan time_to_check;
+
+
+        DateTime last_data_send_begin;
+        DateTime last_data_send;
+        TimeSpan time_to_send;
+
+
+
+
 
         string to_senddata_gps = "";
         string to_senddata_sonic = "";
@@ -28,6 +51,8 @@ namespace surveillance
         string to_senddata_route = "";
         string to_senddata_magnetometer = "";
         string to_senddata_temperatur = "";
+        string to_senddata_humidiation = "";
+
 
         string old_data_gps = "";
         string old_data_sonic = "";
@@ -36,6 +61,9 @@ namespace surveillance
         string old_data_route = "";
         string old_data_magnetometer = "";
         string old_data_temperatur = "";
+        string old_data_humidiation = "";
+
+        
 
         List<string> to_send_data = new List<string>();
 
@@ -107,6 +135,8 @@ namespace surveillance
         {
             try
             {
+                last_data_check_begin = DateTime.Now;
+
                 to_senddata_gps = Convert.ToString(Program.datamng.quopoint.lat) + "," + Convert.ToString(Program.datamng.quopoint.lng);
                 to_senddata_sonic = Program.datamng.sonic;
                 to_senddata_compass = Convert.ToString(Program.datamng.Orientation);
@@ -115,20 +145,20 @@ namespace surveillance
 
                 to_senddata_magnetometer = Convert.ToString(Program.datamng.X + "," + Program.datamng.Y + "," + Program.datamng.Z);
                 to_senddata_temperatur = Convert.ToString(Program.datamng.Temperatur);
+                to_senddata_humidiation = Convert.ToString(Program.datamng.Humidiation);
 
 
 
-                Console.WriteLine(Program.datamng.gps_readcount+" GPS: " + to_senddata_gps);
-                Console.WriteLine(Program.datamng.sonic_readcount+" Sonic: " + to_senddata_sonic);
+                Console.WriteLine(Program.datamng.gps_readcount + " GPS: " + to_senddata_gps);
+                Console.WriteLine(Program.datamng.sonic_readcount + " Sonic: " + to_senddata_sonic);
                 Console.WriteLine(Program.datamng.heading_readcount + " Heading: " + to_senddata_compass);
-                Console.WriteLine(Program.datamng.magmet_readcount + " Magnetomenter: " + to_senddata_magnetometer);
-                Console.WriteLine(Program.datamng.temp_readcount+" Temperatur: " + to_senddata_temperatur);
+                Console.WriteLine(Program.datamng.temp_readcount + " Temperatur: " + to_senddata_temperatur);
 
                 Console.WriteLine("Antrieb: " + to_senddata_antrieb);
                 Console.WriteLine("Route: " + to_senddata_route);
 
 
-                
+
                 to_send_data.Clear();
 
                 //to_send_data.Add("TIME: " + DateTime.Now);
@@ -156,14 +186,14 @@ namespace surveillance
 
                 if (to_senddata_antrieb != old_data_antrieb)
                 {
-                   // Console.WriteLine("SEND antrieb:" + to_senddata_antrieb);
+                    // Console.WriteLine("SEND antrieb:" + to_senddata_antrieb);
                     to_send_data.Add("%ANTRIEB%" + to_senddata_antrieb);
                     old_data_antrieb = to_senddata_antrieb;
                 }
 
                 if (to_senddata_route != old_data_route)
                 {
-                   // Console.WriteLine("SEND route:" + to_senddata_route);
+                    // Console.WriteLine("SEND route:" + to_senddata_route);
                     to_send_data.Add("%ROUTE%" + to_senddata_route);
                     old_data_route = to_senddata_route;
                 }
@@ -182,7 +212,30 @@ namespace surveillance
                     old_data_temperatur = to_senddata_temperatur;
                 }
 
+                if (to_senddata_humidiation != old_data_humidiation)
+                {
+                    //Console.WriteLine("SEND temperatur:" + to_senddata_temperatur);
+                    to_send_data.Add("%HUM%" + to_senddata_humidiation);
+                    old_data_humidiation = to_senddata_humidiation;
+                }
+                last_data_checked = DateTime.Now;
+
+
+                time_to_check = last_data_checked - last_data_check_begin;
+
+                Console.WriteLine("Data checked @: " + last_data_checked);
+                Console.WriteLine("Data check took: " + time_to_check.Ticks);
+
+                
+
+                last_data_send_begin = DateTime.Now;
                 send_data(to_send_data);
+                last_data_send = DateTime.Now;
+                time_to_send = last_data_send - last_data_send_begin;
+
+
+                Console.WriteLine("Data send @: " + last_data_send);
+                Console.WriteLine("Data send took: " + time_to_send.Ticks);
 
             }
             catch (Exception ex)
@@ -197,6 +250,7 @@ namespace surveillance
         bool ready = true;
         public void send_data(List<string> data)
         {
+            Console.WriteLine("   ");
             Console.WriteLine("SENDING DATA...");
             try
             {

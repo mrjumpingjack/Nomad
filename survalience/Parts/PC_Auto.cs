@@ -1,4 +1,4 @@
-﻿using surveillance.Teile;
+﻿
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -140,21 +140,21 @@ namespace surveillance
                 to_senddata_gps = Convert.ToString(Program.datamng.quopoint.lat) + "," + Convert.ToString(Program.datamng.quopoint.lng);
                 to_senddata_sonic = Program.datamng.sonic;
                 to_senddata_compass = Convert.ToString(Program.datamng.Orientation);
-                to_senddata_antrieb = Convert.ToString(Program.datamng.AI_linke_achse + "," + Program.datamng.AI_rechte_achse);
+                to_senddata_antrieb = Convert.ToString(Program.datamng.AI_left_axis + "," + Program.datamng.AI_right_axis);
                 to_senddata_route = Convert.ToString(Program.datamng.targetpoint.lat + ";" + Program.datamng.targetpoint.lng) + "," + Program.datamng.targetPoint_arg;
 
                 to_senddata_magnetometer = Convert.ToString(Program.datamng.X + "," + Program.datamng.Y + "," + Program.datamng.Z);
-                to_senddata_temperatur = Convert.ToString(Program.datamng.Temperatur);
-                to_senddata_humidiation = Convert.ToString(Program.datamng.Humidiation);
+                to_senddata_temperatur = Convert.ToString(Program.datamng.Temperature);
+                to_senddata_humidiation = Convert.ToString(Program.datamng.Humidity);
 
 
 
                 Console.WriteLine(Program.datamng.gps_readcount + " GPS: " + to_senddata_gps);
                 Console.WriteLine(Program.datamng.sonic_readcount + " Sonic: " + to_senddata_sonic);
                 Console.WriteLine(Program.datamng.heading_readcount + " Heading: " + to_senddata_compass);
-                Console.WriteLine(Program.datamng.temp_readcount + " Temperatur: " + to_senddata_temperatur);
+                Console.WriteLine(Program.datamng.temp_readcount + " Temperature: " + to_senddata_temperatur);
 
-                Console.WriteLine("Antrieb: " + to_senddata_antrieb);
+                Console.WriteLine("Drive: " + to_senddata_antrieb);
                 Console.WriteLine("Route: " + to_senddata_route);
 
 
@@ -187,7 +187,7 @@ namespace surveillance
                 if (to_senddata_antrieb != old_data_antrieb)
                 {
                     // Console.WriteLine("SEND antrieb:" + to_senddata_antrieb);
-                    to_send_data.Add("%ANTRIEB%" + to_senddata_antrieb);
+                    to_send_data.Add("%DRIVE%" + to_senddata_antrieb);
                     old_data_antrieb = to_senddata_antrieb;
                 }
 
@@ -387,7 +387,7 @@ namespace surveillance
                             //Console.WriteLine("r:" + recived);
 
 
-                            if (Program.datamng.antriebsart == Datenmanager.Antriebsart.Panzer)
+                            if (Program.datamng.steeringmode == Datenmanager.Steeringmode.Tank)
                             {
                                 if (Program.datamng.Signal_1 != Convert.ToInt32(recived.Split(',')[1]))
                                 {

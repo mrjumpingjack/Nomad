@@ -10,12 +10,12 @@ using Raspberry.IO.GeneralPurpose.Behaviors;
 using System.Threading;
 using System.Globalization;
 using WiringPi;
-using surveillance.Teile;
+
 
 
 namespace surveillance
 {
-    public class Antrieb
+    public class Drive
     {
         #region old
         //byte right_forwards = 0;
@@ -60,7 +60,7 @@ namespace surveillance
         //        Program.datamng.AI_linke_achse = 1;
         //        Program.datamng.AI_rechte_achse = 1;
         //    }
-        //    else if (antriebs_a == "LA")
+        //    else if (antriebs_a == "SA")
         //    {
         //        Kanal_3.Write(false);
         //        Kanal_4.Write(false);
@@ -94,7 +94,7 @@ namespace surveillance
         //    Program.datamng.AI_rechte_achse = -1;
 
         //    }
-        //    else if (antriebs_a == "LA")
+        //    else if (antriebs_a == "SA")
         //    {
         //        Kanal_3.Write(false);
         //        Kanal_4.Write(false);
@@ -140,7 +140,7 @@ namespace surveillance
         //        Program.datamng.AI_rechte_achse = -1;
 
         //    }
-        //    else if (antriebs_a == "LA")
+        //    else if (antriebs_a == "SA")
         //    {
         //        Kanal_3.Write(false);
         //        Kanal_4.Write(true);
@@ -205,7 +205,7 @@ namespace surveillance
 
 
 
-         int actual_poss = 0;
+         //int actual_poss = 0;
 
          static int old_poss = 0;
 
@@ -222,7 +222,7 @@ namespace surveillance
              try
              {
                  mode = mode_;
-                 Console.WriteLine("Antrieb meldet: Mode: " + mode_);
+                 Console.WriteLine("Drive reports: Mode: " + mode_);
 
 
                  connection = new GpioConnection(pin1);
@@ -235,7 +235,7 @@ namespace surveillance
 
                  if (connection.IsOpened)
                  {
-                     Console.WriteLine("Antrieb meldet: GPIO connected");
+                     Console.WriteLine("Drive reports: GPIO connected");
                      string pins = "";
 
                      foreach (ConnectedPin p in connection.Pins)
@@ -265,10 +265,10 @@ namespace surveillance
 
          public void forwards()
          {
-             if (mode == "LA")
+             if (mode == "SA")
              {
                  accalerate(1);
-                 Console.WriteLine("LA forwards");
+                 Console.WriteLine("SA forwards");
              }
              else
              {
@@ -278,7 +278,7 @@ namespace surveillance
 
          public void backwards()
         {
-            if (mode == "LA")
+            if (mode == "SA")
             {
                 accalerate(-1);
             }
@@ -290,7 +290,7 @@ namespace surveillance
 
          public void stopp()
         {
-            if (mode == "LA")
+            if (mode == "SA")
             {
                 accalerate(0);
             }
@@ -302,7 +302,7 @@ namespace surveillance
 
          public void turn_left()
          {
-             if (mode == "LA")
+             if (mode == "SA")
              {
                  alt_turn(turn_value);
              }
@@ -316,7 +316,7 @@ namespace surveillance
 
          public void turn_right()
          {
-             if (mode == "LA")
+             if (mode == "SA")
              {
                  alt_turn(-turn_value);
              }
@@ -412,7 +412,7 @@ namespace surveillance
           
             switch (casenummber)
             {
-                    //LENKACHSE
+                    //steering axis
                 case 0:
                     set_pin(pin3, 0, pinstate_3);
                     set_pin(pin4, 0, pinstate_4);
@@ -437,7 +437,7 @@ namespace surveillance
 
 
 
-                    //PANZER
+                    //TANK
 
                 case 3:
                     set_pin(pin1, 1, pinstate_1);

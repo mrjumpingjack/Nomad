@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using WiringPi;
 
-namespace surveillance.Teile
+namespace surveillance
 {
     class Datenmanager
     {
 
-        public enum Antriebsart
+        public enum Steeringmode
         {
-            Lenkachse,
-            Panzer
+            steeringaxis,
+            Tank
         };
 
-        public Antriebsart antriebsart = new Antriebsart();
+        public Steeringmode steeringmode = new Steeringmode();
 
         public Wiring_Pi wp = new Wiring_Pi();
 
@@ -61,8 +62,8 @@ namespace surveillance.Teile
 
         public int cam_status_quo = 0;
 
-        public float Temperatur = 0;
-        public float Humidiation = 0;
+        public float Temperature = 0;
+        public float Humidity = 0;
 
         public float X = 0f;
         public float Y = 0f;
@@ -175,7 +176,7 @@ namespace surveillance.Teile
             //}
             //else
             //{
-                
+
             //}
 
             ////Right
@@ -189,24 +190,29 @@ namespace surveillance.Teile
             //}
 
             ////Start
-            //if (specialcomms[8] == 1)
-            //{
-            //    Program.egpiofunc.toogle(24);
-            //}
-            //else
-            //{
+            if (specialcomms[8] == 1)
+            {
+                Process proc = new System.Diagnostics.Process();
+                proc.StartInfo.FileName = "/bin/bash";
+                proc.StartInfo.Arguments = "-c \" reboot now \"";
+                proc.StartInfo.UseShellExecute = false;
+                proc.StartInfo.RedirectStandardOutput = true;
+                proc.Start();
+            }
+            else
+            {
 
-            //}
+            }
 
             ////Back
-            //if (specialcomms[9] == 1)
-            //{
-            //    Program.egpiofunc.toogle(23);
-            //}
-            //else
-            //{
-
-            //}
+            if (specialcomms[9] == 1)
+            {
+                Program.egpiofunc.blink_relay(13);
+            }
+            else
+            {
+                
+            }
 
             ////Big
             //if (specialcomms[10] == 1)
@@ -350,8 +356,8 @@ namespace surveillance.Teile
         public int Signal_1 = 0;
         public int Signal_2 = 13;
 
-        public int AI_rechte_achse = 0;
-        public int AI_linke_achse = 0;
+        public int AI_right_axis = 0;
+        public int AI_left_axis = 0;
 
         public int max_distance = 50;
         public int dis_approach = 10;
@@ -360,34 +366,34 @@ namespace surveillance.Teile
 
         public void setup()
         {
-            if (antriebsart == Antriebsart.Lenkachse)
+            if (steeringmode == Steeringmode.steeringaxis)
             {
-                antrieb.setup("LA");
-                Console.WriteLine("Antriebsart: Lenkachse");
+                drive.setup("SA");
+                Console.WriteLine("steering mode: Axis");
             }
-            else if (antriebsart == Antriebsart.Panzer)
+            else if (steeringmode == Steeringmode.Tank)
             {
-                antrieb.setup("P");
-                Console.WriteLine("Antriebsart: Panzer");
+                drive.setup("P");
+                Console.WriteLine("steering mode: Tank");
             }
 
 
             
          
 
-            Sensoren.Add(new Sensor("Vorn_Links"));   //0
-            Sensoren.Add(new Sensor("Vorn"));         //1
-            Sensoren.Add(new Sensor("Vorn_Rechts"));  //2
+            Sensoren.Add(new Sensor("Front_Left"));   //0
+            Sensoren.Add(new Sensor("Front"));         //1
+            Sensoren.Add(new Sensor("Front_Right"));  //2
 
-            Sensoren.Add(new Sensor("Hinen_Rechts")); //3
-            Sensoren.Add(new Sensor("Hinten"));       //4
-            Sensoren.Add(new Sensor("Hinten_Links")); //5
+            Sensoren.Add(new Sensor("Rear_Right")); //3
+            Sensoren.Add(new Sensor("Rear"));       //4
+            Sensoren.Add(new Sensor("Rear_Left")); //5
 
         }
 
 
 
-        public Antrieb antrieb = new Antrieb();
+        public Drive drive = new Drive();
 
 
 

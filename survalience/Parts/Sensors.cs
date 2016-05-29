@@ -13,7 +13,7 @@ namespace surveillance
             name = Name;
         }
 
-       public double abstand;
+       public double distance;
        public string name;
 
 

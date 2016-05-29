@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace surveillance
 {
-    class Panzer_AI
+    class Tank_AI
     {
         double angle_to_turn;
         double start_angle;
@@ -34,16 +34,17 @@ namespace surveillance
                 Console.WriteLine("START ANGLE: " + start_angle);
 
                 if(Program.datamng.Orientation - start_angle <= 180)
-                {//gegen uhrzeigersinn
+                {
+                    //anticlockwise
                     angle_to_turn = Program.datamng.Orientation - start_angle;
 
 
                     while (Math.Abs(angle_to_turn) != Program.datamng.angle_approach)
                     {
                         angle_to_turn = Program.datamng.Orientation - start_angle;
-                        Program.datamng.antrieb.turn_right();
+                        Program.datamng.drive.turn_right();
                         Thread.Sleep(100);
-                        Program.datamng.antrieb.stopp();
+                        Program.datamng.drive.stopp();
                         Thread.Sleep(100);
                         Console.WriteLine("ANGLE TO TURN: " + angle_to_turn);
                         if (target != Program.datamng.targetpoint)
@@ -67,15 +68,15 @@ namespace surveillance
 
                 }
                 else
-                {//mit uhrzeigersinn
+                {//clockwise
                     angle_to_turn = 360 - (Program.datamng.Orientation - start_angle);
 
                     while (Math.Abs(angle_to_turn) != Program.datamng.angle_approach)
                     {
                         angle_to_turn = 360 - (Program.datamng.Orientation - start_angle);
-                        Program.datamng.antrieb.turn_left();
+                        Program.datamng.drive.turn_left();
                         Thread.Sleep(100);
-                        Program.datamng.antrieb.stopp();
+                        Program.datamng.drive.stopp();
                         Thread.Sleep(100);
                         Console.WriteLine("ANGLE TO TURN: " + angle_to_turn);
 
@@ -167,9 +168,9 @@ namespace surveillance
                     //im UZS
                     while (Program.datamng.Orientation <= (end_Orientation + Program.datamng.angle_approach) || Program.datamng.Orientation >= (end_Orientation - Program.datamng.angle_approach))
                     {
-                        Program.datamng.antrieb.turn_right();
+                        Program.datamng.drive.turn_right();
                         Thread.Sleep(100);
-                        Program.datamng.antrieb.stopp();
+                        Program.datamng.drive.stopp();
                         Thread.Sleep(100);
 
                     }
@@ -182,9 +183,9 @@ namespace surveillance
 
                         while (angle_to_turn != 0)
                         {
-                            Program.datamng.antrieb.turn_right();
+                            Program.datamng.drive.turn_right();
                             Thread.Sleep(100);
-                            Program.datamng.antrieb.stopp();
+                            Program.datamng.drive.stopp();
                             Thread.Sleep(100);
 
                         }
@@ -207,19 +208,19 @@ namespace surveillance
                 double drehung = 0;
                 double lcAngle = Program.datamng.Orientation;
 
-                while (sensor.abstand <= 200)
+                while (sensor.distance <= 200)
                 {
                     if (d == 'R')
                     {
-                        Program.datamng.antrieb.turn_left();
+                        Program.datamng.drive.turn_left();
                     }
                     else
                     {
-                        Program.datamng.antrieb.turn_right();
+                        Program.datamng.drive.turn_right();
                     }
 
                     Thread.Sleep(100);
-                    Program.datamng.antrieb.stopp();
+                    Program.datamng.drive.stopp();
                     Thread.Sleep(100);
 
                     drehung = Math.Abs(Program.datamng.Orientation - lcAngle);
@@ -264,22 +265,22 @@ namespace surveillance
                 if (d == 'R')
                 {
                     //FAIL
-                    while (sensor.abstand <= (abstand + Program.datamng.dis_approach) && sensor.abstand >= (abstand - Program.datamng.dis_approach))
+                    while (sensor.distance <= (abstand + Program.datamng.dis_approach) && sensor.distance >= (abstand - Program.datamng.dis_approach))
                     {
 
-                        Program.datamng.antrieb.turn_right();
+                        Program.datamng.drive.turn_right();
                         Thread.Sleep(100);
-                        Program.datamng.antrieb.stopp();
+                        Program.datamng.drive.stopp();
                         Thread.Sleep(100);
                     }
                 }
                 else
                 {
-                    while (sensor.abstand <= (abstand + Program.datamng.dis_approach) && sensor.abstand >= (abstand - Program.datamng.dis_approach))
+                    while (sensor.distance <= (abstand + Program.datamng.dis_approach) && sensor.distance >= (abstand - Program.datamng.dis_approach))
                     {
-                        Program.datamng.antrieb.turn_left();
+                        Program.datamng.drive.turn_left();
                         Thread.Sleep(100);
-                        Program.datamng.antrieb.stopp();
+                        Program.datamng.drive.stopp();
                         Thread.Sleep(100);
                     }
                 }
@@ -300,30 +301,30 @@ namespace surveillance
             {
                 float abstand = 0.0f;
 
-                if (sens1.abstand < sens2.abstand)
+                if (sens1.distance < sens2.distance)
                 {
-                    abstand = (float)(sens2.abstand - sens1.abstand);
+                    abstand = (float)(sens2.distance - sens1.distance);
                 }
                 else
                 {
-                    abstand = (float)(sens1.abstand - sens2.abstand);
+                    abstand = (float)(sens1.distance - sens2.distance);
                 }
 
                 while (abstand > 2)
                 {
 
-                    if (sens1.abstand < sens2.abstand)
+                    if (sens1.distance < sens2.distance)
                     {
 
-                        Program.datamng.antrieb.turn_right();
+                        Program.datamng.drive.turn_right();
 
                     }
                     else
                     {
-                        Program.datamng.antrieb.turn_left();
+                        Program.datamng.drive.turn_left();
                     }
                     Thread.Sleep(100);
-                    Program.datamng.antrieb.stopp();
+                    Program.datamng.drive.stopp();
                     Thread.Sleep(100);
                 }
             }
@@ -343,21 +344,21 @@ namespace surveillance
                 if (s == 'R')
                 {
 
-                    while (Program.datamng.Sensoren[2].abstand <= 10 && Program.datamng.Sensoren[5].abstand <= 10)
+                    while (Program.datamng.Sensoren[2].distance <= 10 && Program.datamng.Sensoren[5].distance <= 10)
                     {
-                        Program.datamng.antrieb.forwards();
+                        Program.datamng.drive.forwards();
                         Thread.Sleep(500);
-                        Program.datamng.antrieb.stopp();
+                        Program.datamng.drive.stopp();
                         Thread.Sleep(100);
                     }
                 }
                 else
                 {
-                    while (Program.datamng.Sensoren[1].abstand <= 10 && Program.datamng.Sensoren[4].abstand <= 10)
+                    while (Program.datamng.Sensoren[1].distance <= 10 && Program.datamng.Sensoren[4].distance <= 10)
                     {
-                        Program.datamng.antrieb.forwards();
+                        Program.datamng.drive.forwards();
                         Thread.Sleep(500);
-                        Program.datamng.antrieb.stopp();
+                        Program.datamng.drive.stopp();
                         Thread.Sleep(100);
                     }
                 }
@@ -385,12 +386,12 @@ namespace surveillance
                 {
                     case 0:
                         //Kein Hinderniss
-                        Program.datamng.antrieb.forwards();
+                        Program.datamng.drive.forwards();
                         break;
 
                     case 1:
                         //Fronales Flächenhinderniss
-                        Program.datamng.antrieb.stopp();
+                        Program.datamng.drive.stopp();
                         turn_angle(90, 'R');
                         drive_by('L');
                         break;
@@ -407,55 +408,55 @@ namespace surveillance
 
                     case 4:
                         //Hinten Flächenhinderniss
-                        Program.datamng.antrieb.stopp();
+                        Program.datamng.drive.stopp();
                         break;
 
                     case 5:
                         //Ganz Rechts Flächenhinderniss
                         drive_by('R');
-                        Program.datamng.antrieb.stopp();
+                        Program.datamng.drive.stopp();
                         break;
 
                     case 6:
                         //Ganz Links Flächenhinderniss
                         drive_by('L');
-                        Program.datamng.antrieb.stopp();
+                        Program.datamng.drive.stopp();
                         break;
 
                     case 7:
                         //Vorne_Links_Ecke
                         turn_angle(90, 'R');
                         drive_by('L');
-                        Program.datamng.antrieb.stopp();
+                        Program.datamng.drive.stopp();
                         break;
 
                     case 8:
                         //Vorne_Rechts_Ecke
                         turn_angle(90, 'L');
                         drive_by('R');
-                        Program.datamng.antrieb.stopp();
+                        Program.datamng.drive.stopp();
                         break;
 
                     case 9:
                         //Hinten_Links_Ecke
                         turn_angle(90, 'R');
-                        Program.datamng.antrieb.stopp();
+                        Program.datamng.drive.stopp();
                         break;
 
                     case 10:
                         //Hinten_Rechts_Ecke
                         turn_angle(90, 'R');
-                        Program.datamng.antrieb.stopp();
+                        Program.datamng.drive.stopp();
                         break;
 
                     case 11:
                         //Hinten_Links Flächenhinderniss
-                        Program.datamng.antrieb.stopp();
+                        Program.datamng.drive.stopp();
                         break;
 
                     case 12:
                         //Hinten_Rechts Flächenhinderniss
-                        Program.datamng.antrieb.stopp();
+                        Program.datamng.drive.stopp();
                         break;
 
                     case 13:
@@ -465,42 +466,42 @@ namespace surveillance
                         //ODER
                         //turn_till_Sensor_sensor_equal("Vorn_Links", "Hinten_Links");
 
-                        Program.datamng.antrieb.forwards();
+                        Program.datamng.drive.forwards();
                         break;
 
                     case 14:
                         //Punkt_Frontal_rechts
-                        Program.datamng.antrieb.stopp();
+                        Program.datamng.drive.stopp();
                         turn_till_sensor_free(Program.datamng.Sensoren[2], 'L', 45);
                         break;
 
                     case 15:
                         //Punkt_Frontal
-                        Program.datamng.antrieb.stopp();
+                        Program.datamng.drive.stopp();
                         turn_till_sensor_free(Program.datamng.Sensoren[0], 'L', 45);
                         break;
 
                     case 16:
                         //Punkt_Frontal_Links
-                        Program.datamng.antrieb.stopp();
+                        Program.datamng.drive.stopp();
                         turn_till_sensor_free(Program.datamng.Sensoren[1], 'R', 45);
                         break;
 
                     case 17:
                         //Punkt_Hinten_Rechts
-                        Program.datamng.antrieb.stopp();
+                        Program.datamng.drive.stopp();
                         drive_by('R');
                         break;
 
                     case 18:
                         //Punkt_Hinten_Links
-                        Program.datamng.antrieb.stopp();
+                        Program.datamng.drive.stopp();
                         drive_by('L');
                         break;
 
                     case 19:
                         //Punkt_Hinten
-                        Program.datamng.antrieb.stopp();
+                        Program.datamng.drive.stopp();
                         break;
                 }
 
@@ -536,7 +537,7 @@ namespace surveillance
 
                         if (dodged)
                         {
-                            Program.datamng.antrieb.stopp();
+                            Program.datamng.drive.stopp();
 
                             if (Program.datamng.qoupoint_changed.AddSeconds(30) <= DateTime.Now)
                             {
@@ -552,221 +553,221 @@ namespace surveillance
                             aim(Program.datamng.targetpoint);
                             Console.WriteLine("AIMING DONE");
 
-                            if (Program.datamng.Sensoren[1].abstand == Program.datamng.max_distance &&
-                                Program.datamng.Sensoren[0].abstand == Program.datamng.max_distance &&
-                                Program.datamng.Sensoren[2].abstand == Program.datamng.max_distance &&
-                                Program.datamng.Sensoren[4].abstand == Program.datamng.max_distance &&
-                                Program.datamng.Sensoren[5].abstand == Program.datamng.max_distance &&
-                                Program.datamng.Sensoren[3].abstand == Program.datamng.max_distance)
+                            if (Program.datamng.Sensoren[1].distance == Program.datamng.max_distance &&
+                                Program.datamng.Sensoren[0].distance == Program.datamng.max_distance &&
+                                Program.datamng.Sensoren[2].distance == Program.datamng.max_distance &&
+                                Program.datamng.Sensoren[4].distance == Program.datamng.max_distance &&
+                                Program.datamng.Sensoren[5].distance == Program.datamng.max_distance &&
+                                Program.datamng.Sensoren[3].distance == Program.datamng.max_distance)
                             {
                                 //Kein Hinderniss, weiterfahren
                                 dodge_obsticle(0);
                             }
 
-                            if (Program.datamng.Sensoren[1].abstand <= 30 &&
-                                Program.datamng.Sensoren[0].abstand <= 10 &&
-                                Program.datamng.Sensoren[2].abstand <= 30 &&
-                                Program.datamng.Sensoren[4].abstand >= 30 &&
-                                Program.datamng.Sensoren[5].abstand >= 30 &&
-                                Program.datamng.Sensoren[3].abstand >= 30)
+                            if (Program.datamng.Sensoren[1].distance <= 30 &&
+                                Program.datamng.Sensoren[0].distance <= 10 &&
+                                Program.datamng.Sensoren[2].distance <= 30 &&
+                                Program.datamng.Sensoren[4].distance >= 30 &&
+                                Program.datamng.Sensoren[5].distance >= 30 &&
+                                Program.datamng.Sensoren[3].distance >= 30)
                             {
                                 //Fronales Flächenhinderniss
                                 dodge_obsticle(1);
                             }
 
-                            if (Program.datamng.Sensoren[1].abstand <= 15 &&
-                                Program.datamng.Sensoren[0].abstand <= 20 &&
-                                Program.datamng.Sensoren[2].abstand >= 30 &&
-                                Program.datamng.Sensoren[4].abstand >= 30 &&
-                                Program.datamng.Sensoren[5].abstand >= 30 &&
-                                Program.datamng.Sensoren[3].abstand >= 30)
+                            if (Program.datamng.Sensoren[1].distance <= 15 &&
+                                Program.datamng.Sensoren[0].distance <= 20 &&
+                                Program.datamng.Sensoren[2].distance >= 30 &&
+                                Program.datamng.Sensoren[4].distance >= 30 &&
+                                Program.datamng.Sensoren[5].distance >= 30 &&
+                                Program.datamng.Sensoren[3].distance >= 30)
                             {
                                 //Fronal_Links Flächenhinderniss
                                 dodge_obsticle(2);
                             }
 
-                            if (Program.datamng.Sensoren[1].abstand >= 30 &&
-                                Program.datamng.Sensoren[0].abstand <= 20 &&
-                                Program.datamng.Sensoren[2].abstand <= 15 &&
-                                Program.datamng.Sensoren[4].abstand >= 30 &&
-                                Program.datamng.Sensoren[5].abstand >= 30 &&
-                                Program.datamng.Sensoren[3].abstand >= 30)
+                            if (Program.datamng.Sensoren[1].distance >= 30 &&
+                                Program.datamng.Sensoren[0].distance <= 20 &&
+                                Program.datamng.Sensoren[2].distance <= 15 &&
+                                Program.datamng.Sensoren[4].distance >= 30 &&
+                                Program.datamng.Sensoren[5].distance >= 30 &&
+                                Program.datamng.Sensoren[3].distance >= 30)
                             {
                                 //Fronal_Rechts Flächenhinderniss
                                 dodge_obsticle(3);
                             }
 
-                            if (Program.datamng.Sensoren[1].abstand >= 30 &&
-                                Program.datamng.Sensoren[0].abstand >= 30 &&
-                                Program.datamng.Sensoren[2].abstand >= 30 &&
-                                Program.datamng.Sensoren[4].abstand <= 30 &&
-                                Program.datamng.Sensoren[5].abstand <= 30 &&
-                                Program.datamng.Sensoren[3].abstand <= 10)
+                            if (Program.datamng.Sensoren[1].distance >= 30 &&
+                                Program.datamng.Sensoren[0].distance >= 30 &&
+                                Program.datamng.Sensoren[2].distance >= 30 &&
+                                Program.datamng.Sensoren[4].distance <= 30 &&
+                                Program.datamng.Sensoren[5].distance <= 30 &&
+                                Program.datamng.Sensoren[3].distance <= 10)
                             {
                                 //Hinten Flächenhinderniss
                                 dodge_obsticle(4);
                             }
 
-                            if (Program.datamng.Sensoren[1].abstand >= 30 &&
-                                Program.datamng.Sensoren[0].abstand >= 30 &&
-                                Program.datamng.Sensoren[2].abstand <= 30 &&
-                                Program.datamng.Sensoren[4].abstand >= 30 &&
-                                Program.datamng.Sensoren[5].abstand <= 30 &&
-                                Program.datamng.Sensoren[3].abstand >= 30)
+                            if (Program.datamng.Sensoren[1].distance >= 30 &&
+                                Program.datamng.Sensoren[0].distance >= 30 &&
+                                Program.datamng.Sensoren[2].distance <= 30 &&
+                                Program.datamng.Sensoren[4].distance >= 30 &&
+                                Program.datamng.Sensoren[5].distance <= 30 &&
+                                Program.datamng.Sensoren[3].distance >= 30)
                             {
                                 //Ganz Rechts Flächenhinderniss
                                 dodge_obsticle(5);
                             }
 
-                            if (Program.datamng.Sensoren[1].abstand <= 30 &&
-                                Program.datamng.Sensoren[0].abstand >= 30 &&
-                                Program.datamng.Sensoren[2].abstand >= 30 &&
-                                Program.datamng.Sensoren[4].abstand <= 30 &&
-                                Program.datamng.Sensoren[5].abstand >= 30 &&
-                                Program.datamng.Sensoren[3].abstand >= 30)
+                            if (Program.datamng.Sensoren[1].distance <= 30 &&
+                                Program.datamng.Sensoren[0].distance >= 30 &&
+                                Program.datamng.Sensoren[2].distance >= 30 &&
+                                Program.datamng.Sensoren[4].distance <= 30 &&
+                                Program.datamng.Sensoren[5].distance >= 30 &&
+                                Program.datamng.Sensoren[3].distance >= 30)
                             {
                                 //Ganz Links Flächenhinderniss
                                 dodge_obsticle(6);
                             }
 
-                            if (Program.datamng.Sensoren[1].abstand <= 30 &&
-                                Program.datamng.Sensoren[0].abstand <= 30 &&
-                                Program.datamng.Sensoren[2].abstand >= 30 &&
-                                Program.datamng.Sensoren[4].abstand <= 30 &&
-                                Program.datamng.Sensoren[5].abstand >= 30 &&
-                                Program.datamng.Sensoren[3].abstand >= 30)
+                            if (Program.datamng.Sensoren[1].distance <= 30 &&
+                                Program.datamng.Sensoren[0].distance <= 30 &&
+                                Program.datamng.Sensoren[2].distance >= 30 &&
+                                Program.datamng.Sensoren[4].distance <= 30 &&
+                                Program.datamng.Sensoren[5].distance >= 30 &&
+                                Program.datamng.Sensoren[3].distance >= 30)
                             {
                                 //Vorne_Links_Ecke
                                 dodge_obsticle(7);
                             }
 
-                            if (Program.datamng.Sensoren[1].abstand >= 30 &&
-                                Program.datamng.Sensoren[0].abstand <= 30 &&
-                                Program.datamng.Sensoren[2].abstand <= 30 &&
-                                Program.datamng.Sensoren[4].abstand >= 30 &&
-                                Program.datamng.Sensoren[5].abstand <= 30 &&
-                                Program.datamng.Sensoren[3].abstand >= 30)
+                            if (Program.datamng.Sensoren[1].distance >= 30 &&
+                                Program.datamng.Sensoren[0].distance <= 30 &&
+                                Program.datamng.Sensoren[2].distance <= 30 &&
+                                Program.datamng.Sensoren[4].distance >= 30 &&
+                                Program.datamng.Sensoren[5].distance <= 30 &&
+                                Program.datamng.Sensoren[3].distance >= 30)
                             {
                                 //Vorne_Rechts_Ecke
                                 dodge_obsticle(8);
                             }
 
-                            if (Program.datamng.Sensoren[1].abstand <= 30 &&
-                                Program.datamng.Sensoren[0].abstand >= 30 &&
-                                Program.datamng.Sensoren[2].abstand >= 30 &&
-                                Program.datamng.Sensoren[4].abstand <= 30 &&
-                                Program.datamng.Sensoren[5].abstand >= 30 &&
-                                Program.datamng.Sensoren[3].abstand <= 30)
+                            if (Program.datamng.Sensoren[1].distance <= 30 &&
+                                Program.datamng.Sensoren[0].distance >= 30 &&
+                                Program.datamng.Sensoren[2].distance >= 30 &&
+                                Program.datamng.Sensoren[4].distance <= 30 &&
+                                Program.datamng.Sensoren[5].distance >= 30 &&
+                                Program.datamng.Sensoren[3].distance <= 30)
                             {
                                 //Hinten_Links_Ecke
                                 dodge_obsticle(9);
                             }
 
-                            if (Program.datamng.Sensoren[1].abstand >= 30 &&
-                                Program.datamng.Sensoren[0].abstand >= 30 &&
-                                Program.datamng.Sensoren[2].abstand <= 30 &&
-                                Program.datamng.Sensoren[4].abstand >= 30 &&
-                                Program.datamng.Sensoren[5].abstand <= 30 &&
-                                Program.datamng.Sensoren[3].abstand <= 30)
+                            if (Program.datamng.Sensoren[1].distance >= 30 &&
+                                Program.datamng.Sensoren[0].distance >= 30 &&
+                                Program.datamng.Sensoren[2].distance <= 30 &&
+                                Program.datamng.Sensoren[4].distance >= 30 &&
+                                Program.datamng.Sensoren[5].distance <= 30 &&
+                                Program.datamng.Sensoren[3].distance <= 30)
                             {
                                 //Hinten_Rechts_Ecke
                                 dodge_obsticle(10);
                             }
 
-                            if (Program.datamng.Sensoren[1].abstand >= 30 &&
-                                Program.datamng.Sensoren[0].abstand >= 30 &&
-                                Program.datamng.Sensoren[2].abstand >= 30 &&
-                                Program.datamng.Sensoren[4].abstand <= 15 &&
-                                Program.datamng.Sensoren[5].abstand >= 30 &&
-                                Program.datamng.Sensoren[3].abstand <= 20)
+                            if (Program.datamng.Sensoren[1].distance >= 30 &&
+                                Program.datamng.Sensoren[0].distance >= 30 &&
+                                Program.datamng.Sensoren[2].distance >= 30 &&
+                                Program.datamng.Sensoren[4].distance <= 15 &&
+                                Program.datamng.Sensoren[5].distance >= 30 &&
+                                Program.datamng.Sensoren[3].distance <= 20)
                             {
                                 //Hinten_Links Flächenhinderniss
                                 dodge_obsticle(11);
                             }
 
-                            if (Program.datamng.Sensoren[1].abstand >= 30 &&
-                                Program.datamng.Sensoren[0].abstand >= 30 &&
-                                Program.datamng.Sensoren[2].abstand >= 30 &&
-                                Program.datamng.Sensoren[4].abstand >= 30 &&
-                                Program.datamng.Sensoren[5].abstand <= 15 &&
-                                Program.datamng.Sensoren[3].abstand <= 20)
+                            if (Program.datamng.Sensoren[1].distance >= 30 &&
+                                Program.datamng.Sensoren[0].distance >= 30 &&
+                                Program.datamng.Sensoren[2].distance >= 30 &&
+                                Program.datamng.Sensoren[4].distance >= 30 &&
+                                Program.datamng.Sensoren[5].distance <= 15 &&
+                                Program.datamng.Sensoren[3].distance <= 20)
                             {
                                 //Hinten_Rechts Flächenhinderniss
                                 dodge_obsticle(12);
                             }
 
-                            if (Program.datamng.Sensoren[1].abstand <= 30 &&
-                                Program.datamng.Sensoren[0].abstand >= 30 &&
-                                Program.datamng.Sensoren[2].abstand <= 30 &&
-                                Program.datamng.Sensoren[4].abstand <= 30 &&
-                                Program.datamng.Sensoren[5].abstand <= 30 &&
-                                Program.datamng.Sensoren[3].abstand >= 30)
+                            if (Program.datamng.Sensoren[1].distance <= 30 &&
+                                Program.datamng.Sensoren[0].distance >= 30 &&
+                                Program.datamng.Sensoren[2].distance <= 30 &&
+                                Program.datamng.Sensoren[4].distance <= 30 &&
+                                Program.datamng.Sensoren[5].distance <= 30 &&
+                                Program.datamng.Sensoren[3].distance >= 30)
                             {
                                 //Passage
                                 dodge_obsticle(13);
                             }
 
-                            if (Program.datamng.Sensoren[1].abstand >= 30 &&
-                                Program.datamng.Sensoren[0].abstand >= 30 &&
-                                Program.datamng.Sensoren[2].abstand <= 10 &&
-                                Program.datamng.Sensoren[4].abstand >= 30 &&
-                                Program.datamng.Sensoren[5].abstand >= 30 &&
-                                Program.datamng.Sensoren[3].abstand >= 30)
+                            if (Program.datamng.Sensoren[1].distance >= 30 &&
+                                Program.datamng.Sensoren[0].distance >= 30 &&
+                                Program.datamng.Sensoren[2].distance <= 10 &&
+                                Program.datamng.Sensoren[4].distance >= 30 &&
+                                Program.datamng.Sensoren[5].distance >= 30 &&
+                                Program.datamng.Sensoren[3].distance >= 30)
                             {
                                 //Punkt_Frontal_Rechts
                                 dodge_obsticle(14);
                             }
 
-                            if (Program.datamng.Sensoren[1].abstand >= 30 &&
-                                Program.datamng.Sensoren[0].abstand <= 10 &&
-                                Program.datamng.Sensoren[2].abstand >= 30 &&
-                                Program.datamng.Sensoren[4].abstand >= 30 &&
-                                Program.datamng.Sensoren[5].abstand >= 30 &&
-                                Program.datamng.Sensoren[3].abstand >= 30)
+                            if (Program.datamng.Sensoren[1].distance >= 30 &&
+                                Program.datamng.Sensoren[0].distance <= 10 &&
+                                Program.datamng.Sensoren[2].distance >= 30 &&
+                                Program.datamng.Sensoren[4].distance >= 30 &&
+                                Program.datamng.Sensoren[5].distance >= 30 &&
+                                Program.datamng.Sensoren[3].distance >= 30)
                             {
                                 //Punkt_Frontal
                                 dodge_obsticle(15);
                             }
 
-                            if (Program.datamng.Sensoren[1].abstand >= 30 &&
-                               Program.datamng.Sensoren[0].abstand >= 30 &&
-                               Program.datamng.Sensoren[2].abstand >= 30 &&
-                               Program.datamng.Sensoren[4].abstand <= 10 &&
-                               Program.datamng.Sensoren[5].abstand >= 30 &&
-                               Program.datamng.Sensoren[3].abstand >= 30)
+                            if (Program.datamng.Sensoren[1].distance >= 30 &&
+                               Program.datamng.Sensoren[0].distance >= 30 &&
+                               Program.datamng.Sensoren[2].distance >= 30 &&
+                               Program.datamng.Sensoren[4].distance <= 10 &&
+                               Program.datamng.Sensoren[5].distance >= 30 &&
+                               Program.datamng.Sensoren[3].distance >= 30)
                             {
                                 //Punkt_Frontal_Links
                                 dodge_obsticle(16);
                             }
 
-                            if (Program.datamng.Sensoren[1].abstand >= 30 &&
-                                Program.datamng.Sensoren[0].abstand >= 30 &&
-                                Program.datamng.Sensoren[2].abstand >= 30 &&
-                                Program.datamng.Sensoren[4].abstand >= 30 &&
-                                Program.datamng.Sensoren[5].abstand <= 10 &&
-                                Program.datamng.Sensoren[3].abstand >= 30)
+                            if (Program.datamng.Sensoren[1].distance >= 30 &&
+                                Program.datamng.Sensoren[0].distance >= 30 &&
+                                Program.datamng.Sensoren[2].distance >= 30 &&
+                                Program.datamng.Sensoren[4].distance >= 30 &&
+                                Program.datamng.Sensoren[5].distance <= 10 &&
+                                Program.datamng.Sensoren[3].distance >= 30)
                             {
                                 //Punkt_Frontal_Rechts
                                 dodge_obsticle(17);
                             }
 
-                            if (Program.datamng.Sensoren[1].abstand >= 30 &&
-                                Program.datamng.Sensoren[0].abstand >= 30 &&
-                                Program.datamng.Sensoren[2].abstand >= 30 &&
-                                Program.datamng.Sensoren[4].abstand <= 10 &&
-                                Program.datamng.Sensoren[5].abstand >= 30 &&
-                                Program.datamng.Sensoren[3].abstand >= 30)
+                            if (Program.datamng.Sensoren[1].distance >= 30 &&
+                                Program.datamng.Sensoren[0].distance >= 30 &&
+                                Program.datamng.Sensoren[2].distance >= 30 &&
+                                Program.datamng.Sensoren[4].distance <= 10 &&
+                                Program.datamng.Sensoren[5].distance >= 30 &&
+                                Program.datamng.Sensoren[3].distance >= 30)
                             {
                                 //Punkt_Frontal_Links
                                 dodge_obsticle(18);
                             }
 
-                            if (Program.datamng.Sensoren[1].abstand >= 30 &&
-                                Program.datamng.Sensoren[0].abstand >= 30 &&
-                                Program.datamng.Sensoren[2].abstand >= 30 &&
-                                Program.datamng.Sensoren[4].abstand >= 30 &&
-                                Program.datamng.Sensoren[5].abstand >= 30 &&
-                                Program.datamng.Sensoren[3].abstand <= 10)
+                            if (Program.datamng.Sensoren[1].distance >= 30 &&
+                                Program.datamng.Sensoren[0].distance >= 30 &&
+                                Program.datamng.Sensoren[2].distance >= 30 &&
+                                Program.datamng.Sensoren[4].distance >= 30 &&
+                                Program.datamng.Sensoren[5].distance >= 30 &&
+                                Program.datamng.Sensoren[3].distance <= 10)
                             {
                                 //Punkt_Hinten
                                 dodge_obsticle(19);

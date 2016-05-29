@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace surveillance
 {
-    class directcontroll_Lenkachse
+    class directcontroll_steering_axis
     {
         
 
@@ -15,28 +15,28 @@ namespace surveillance
         {
             try
             {
-                Console.WriteLine("DIRECTCONTROLL_Lenkachse ON");
+                Console.WriteLine("DIRECTCONTROLL_STEERING_AXIS ON");
                 while (true)
                 {
                     if (Program.datamng.Signal_1 == 1)
                     {
                         Console.WriteLine("DRCRL forwards");
-                        Program.datamng.antrieb.forwards();
+                        Program.datamng.drive.forwards();
                     }
 
                     if (Program.datamng.Signal_1 == 0 )
                     {
-                        Program.datamng.antrieb.stopp();
+                        Program.datamng.drive.stopp();
                     }
 
                     if (Program.datamng.Signal_1 == -1)
                     {
                         Console.WriteLine("DRCRL backwards");
-                        Program.datamng.antrieb.backwards();
+                        Program.datamng.drive.backwards();
                     }
 
 
-                    Program.datamng.antrieb.alt_turn(Program.datamng.Signal_2);
+                    Program.datamng.drive.alt_turn(Program.datamng.Signal_2);
                     
 
 
@@ -47,7 +47,7 @@ namespace surveillance
             catch (Exception ex)
             {
                 Console.WriteLine();
-                Console.WriteLine("ERROR WHILE DIRECTCONTROLL_Lenkachse");
+                Console.WriteLine("ERROR WHILE DIRECTCONTROLL_STEERING_AXIS");
                 Console.WriteLine(ex.Message);
                 Console.WriteLine();
             }

@@ -42,7 +42,7 @@ namespace surveillance
                                 GamePad.GetState(0).Buttons.LeftShoulder == ButtonState.Released)
                             {
                                 Console.WriteLine("LOCALCONTROLL: Forwards");
-                                Program.datamng.antrieb.forwards();
+                                Program.datamng.drive.forwards();
                             }
 
                             if (GamePad.GetState(0).Triggers.Right < 1.0f &&
@@ -51,7 +51,7 @@ namespace surveillance
                                 GamePad.GetState(0).Buttons.LeftShoulder == ButtonState.Released)
                             {
                                 Console.WriteLine("LOCALCONTROLL: Backwards");
-                                Program.datamng.antrieb.backwards();
+                                Program.datamng.drive.backwards();
                             }
 
                             if (GamePad.GetState(0).Triggers.Right < 1.0f &&
@@ -60,7 +60,7 @@ namespace surveillance
                                 GamePad.GetState(0).Buttons.LeftShoulder == ButtonState.Released)
                             {
                                 Console.WriteLine("LOCALCONTROLL: Right");
-                                Program.datamng.antrieb.turn_right();
+                                Program.datamng.drive.turn_right();
                             }
 
                             if (GamePad.GetState(0).Triggers.Right < 1.0f &&
@@ -69,7 +69,7 @@ namespace surveillance
                                 GamePad.GetState(0).Buttons.LeftShoulder == ButtonState.Pressed)
                             {
                                 Console.WriteLine("LOCALCONTROLL: Left");
-                                Program.datamng.antrieb.turn_left();
+                                Program.datamng.drive.turn_left();
                             }
 
                             if (GamePad.GetState(0).Triggers.Right < 1.0f &&
@@ -77,7 +77,7 @@ namespace surveillance
                                 GamePad.GetState(0).Buttons.RightShoulder == ButtonState.Released &&
                                 GamePad.GetState(0).Buttons.LeftShoulder == ButtonState.Released)
                             {
-                                Program.datamng.antrieb.stopp();
+                                Program.datamng.drive.stopp();
                             }
 
                             //Console.WriteLine("r_t " + GamePad.GetState(0).Triggers.Right);

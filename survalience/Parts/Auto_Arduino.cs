@@ -6,7 +6,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using surveillance.Teile;
 
 namespace surveillance
 {
@@ -173,7 +172,7 @@ namespace surveillance
             data = RemoveWhitespace(data);
 
 
-            Program.datamng.Temperatur = (float)Convert.ToDouble(data);
+            Program.datamng.Temperature = (float)Convert.ToDouble(data);
 
         }
 
@@ -185,7 +184,7 @@ namespace surveillance
             data = RemoveWhitespace(data);
 
 
-            Program.datamng.Humidiation = (float)Convert.ToDouble(data);
+            Program.datamng.Humidity = (float)Convert.ToDouble(data);
 
         }
 
@@ -264,7 +263,7 @@ namespace surveillance
                 for (int i = 0; i < processed_data.Count; i++)
                 {
                     //Console.WriteLine(processed_data[i]);
-                    Program.datamng.Sensoren[i].abstand = Convert.ToInt32(processed_data[i].Substring(2, processed_data[i].Length - 2));
+                    Program.datamng.Sensoren[i].distance = Convert.ToInt32(processed_data[i].Substring(2, processed_data[i].Length - 2));
 
                 }
 

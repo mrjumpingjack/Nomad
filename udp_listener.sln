@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaspberryPiDotNet", "..\RaspberryPi.Net-master\RaspberryPiDotNet\RaspberryPiDotNet.csproj", "{FC84D8A0-B578-4663-9BDA-D946513E2801}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI controll", "GUI controll\GUI controll.csproj", "{1C637027-A703-464F-BFED-9EBB8C194D96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "surveillance", "survalience\surveillance.csproj", "{83EF8544-F5C9-4E3D-A967-E0A193E0D802}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "detour", "survalience\detour.csproj", "{83EF8544-F5C9-4E3D-A967-E0A193E0D802}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "readport", "readport\readport.csproj", "{6B070C66-0FB9-4B97-9DE5-849E5668B797}"
 EndProject

@@ -16,7 +16,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Timers;
 using Kingsland.PiFaceSharp.PinControllers;
-using surveillance.Teile;
+
 using WiringPi;
 using Raspberry.IO.GeneralPurpose;
 using Raspberry.IO.GeneralPurpose.Behaviors;
@@ -41,30 +41,28 @@ namespace surveillance
         static DateTime last_send_time = DateTime.Now;
 
 
-        static public Panzer_AI panzer_ai = new Panzer_AI();
+        static public Tank_AI panzer_ai = new Tank_AI();
         static public Lenkachsen_AI lenkachsen_ai = new Lenkachsen_AI();
 
         static public extra_gpio_func egpiofunc = new extra_gpio_func();
 
 
-        static public directcontroll_Panzer directcontroll_panzer = new directcontroll_Panzer();
-        static public directcontroll_Lenkachse directcontroll_lenkachse = new directcontroll_Lenkachse();
+        static public directcontrol_tank directcontroll_panzer = new directcontrol_tank();
+        static public directcontroll_steering_axis directcontroll_lenkachse = new directcontroll_steering_axis();
 
         static private string host;
 
 
 
-        //public static PC_Auto pc_auto = new PC_Auto();
-
         static void Main(string[] args)
         {
 
 
-            //try
-            //{
-            #region start
+            try
+            {
+                #region start
 
-            if (args.Length > 0)
+                if (args.Length > 0)
                 host = args[0];
 
             datamng.setup();
@@ -111,7 +109,7 @@ namespace surveillance
 
             Console.WriteLine("5: THREAD STARTS");
             artificial_intelligence artiintell = new artificial_intelligence();
-            directcontrol_panzer drctrl = new directcontrol_panzer();
+            directcontrol_tank drctrl = new directcontrol_tank();
             localcontroll localcontroll = new localcontroll();
 
             drive_with_AI = new Thread(artiintell.drive);
@@ -157,22 +155,22 @@ namespace surveillance
             Console.WriteLine();
 
 
-            Console.WriteLine("Threadcount: " + Process.GetCurrentProcess().Threads);
+            Console.WriteLine("Threadcount: " + Process.GetCurrentProcess().Threads.Count);
 
 
-            #endregion start
-
-
-
+                #endregion start
 
 
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine("MAINERROR:" + ex.Message + "..." + ex.Data + ".." + ex.InnerException);
 
-            //}
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("MAINERROR:" + ex.Message + "..." + ex.Data + ".." + ex.InnerException);
+
+            }
         }
 
         private static void senddata()
@@ -224,13 +222,13 @@ namespace surveillance
                     }
                 }
 
-                if (attributes["Antriebsmodus"] == "Lenkachse")
+                if (attributes["Drivemode"] == "Steeringaxis")
                 {
-                    datamng.antriebsart = surveillance.Teile.Datenmanager.Antriebsart.Lenkachse;
+                    datamng.steeringmode = Datenmanager.Steeringmode.steeringaxis;
                 }
-                if (attributes["Antriebsmodus"] == "Panzer")
+                if (attributes["Drivemode"] == "Tank")
                 {
-                    datamng.antriebsart = surveillance.Teile.Datenmanager.Antriebsart.Panzer;
+                    datamng.steeringmode = Datenmanager.Steeringmode.Tank;
                 }
             }
 

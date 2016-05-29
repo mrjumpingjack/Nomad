@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using WiringPi;
-using surveillance.Teile;
 
-namespace surveillance.Teile
+
+namespace surveillance
 {
     class extra_gpio_func
     {
@@ -78,6 +79,29 @@ namespace surveillance.Teile
                 Console.WriteLine("ERROR WHILE TOOGLING PINS IN SPECOMM");
             }
         }
+
+        public void blink_relay(int pin)
+        {
+            try
+            {
+
+
+                Program.datamng.pinstatus[pin] = 1;
+                Console.WriteLine("Pin " + (pin + 1) + ":" + Program.datamng.pinstatus[pin]);
+
+                Thread.Sleep(50);
+
+                Program.datamng.pinstatus[pin] = 0;
+                Console.WriteLine("Pin " + (pin + 1) + ":" + Program.datamng.pinstatus[pin]);
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR WHILE TOOGLING PINS IN SPECOMM");
+            }
+        }
+
 
 
     }

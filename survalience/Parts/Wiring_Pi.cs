@@ -9,8 +9,7 @@ using Raspberry.IO.GeneralPurpose.Behaviors;
 using System.Threading;
 using System.Globalization;
 using WiringPi;
-using surveillance.Teile;
-namespace surveillance.Teile
+namespace surveillance
 {
     public class Wiring_Pi
     {

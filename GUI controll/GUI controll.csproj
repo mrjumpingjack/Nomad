@@ -99,27 +99,15 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Carview.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Carview.Designer.cs">
-      <DependentUpon>Carview.cs</DependentUpon>
-    </Compile>
     <Compile Include="ComboBoxWithGrid.xaml.cs">
       <DependentUpon>ComboBoxWithGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="Compass.cs" />
-    <Compile Include="customlabel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="customlabel.Designer.cs">
-      <DependentUpon>customlabel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Einstellungen.cs">
+    <Compile Include="Settings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Einstellungen.Designer.cs">
-      <DependentUpon>Einstellungen.cs</DependentUpon>
+    <Compile Include="Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -127,42 +115,17 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Magnetometer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Magnetometer.Designer.cs">
-      <DependentUpon>Magnetometer.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="specomms.cs" />
     <Compile Include="VerticalProgressBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Winformhost.cs" />
-    <EmbeddedResource Include="Carview.resx">
-      <DependentUpon>Carview.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="customlabel.resx">
-      <DependentUpon>customlabel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Einstellungen.resx">
-      <DependentUpon>Einstellungen.cs</DependentUpon>
+    <EmbeddedResource Include="Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Magnetometer.resx">
-      <DependentUpon>Magnetometer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -177,7 +140,6 @@
     <EmbeddedResource Include="VerticalProgressBar.resx">
       <DependentUpon>VerticalProgressBar.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
